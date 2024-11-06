@@ -22,7 +22,11 @@ const char MSG09[] PROGMEM = "MSH|^~\\&|1|ichroma2|TF020||20240215141239||OUL^R2
 const char MSG10[] PROGMEM = "MSH|^~\\&|LIS|1021|HIS|1034|200705151727||ORU^R01^ORU_R01|MSG00001|T^T|2.5.1\r\nPID||0001|05689504700|119242517|Ferreira^Felipe^^^^^L^A|Ferreira^Conceição^^^^^L^A|19830610|M|||Estrada da Mombaça^^Saquarema^Rio de Janeiro^28990051^BRA^H\r\nOBR|1|P0001||200705151430|45|2024^Y|20240514153600||45^ml|124/RJ^GestQual Vet|||Sou apenas um campo de observação\r\nOBX||NM|1000764^CREATININE^^^CREA|0001|1.2|mg/dL|.7-1.4||||F|||201005151545||284\r\nOBX||NM|1000765^GLICOSE^^^GLI|0001|91.2|mg/dL|.7-1.4||||F|||201005151545||284\r\nOBX||NM|1000766^COLESTEROL^^^COL|0001|151.2|mg/dL|.7-1.4||||F|||201005151545||284";
 const char *HL7[] PROGMEM = {MSG09, MSG10};
 
-const char* html PROGMEM = R"rawliteral(
+const char MSG11[] PROGMEM = "#1|SX022|20240320153613|-|Daniele|Chibally|Cao|vet D-dimer|DDTBB07V|2024.10.13|4955.29|||||ng/ml|-|-||||G|G|0|||||nome de gato|123|||VECTC100041";
+const char MSG12[] PROGMEM = "#1|SX022|20240123153959|-||Teste|Cao|vet D-dimer|DDTBB07V|2024.10.13|326.08|||||ng/ml|-|-||||G|G|0|||||||||VECTC100041";
+const char *OTHER[] PROGMEM = {MSG11, MSG12};
+
+const char *html PROGMEM = R"rawliteral(
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,9 +52,13 @@ const char* html PROGMEM = R"rawliteral(
         <option value="H01">HL7 MSG01</option>
         <option value="H02">HL7 MSG02</option>
         <option value="HALL">HL7 ALL MSGs</option>
+        <option value="O01">OTHER MSG01</option>
+        <option value="O02">OTHER MSG02</option>
+        <option value="OALL">OTHER ALL MSGs</option>
+
     </select>
     <input type="submit" value="Send" />
     </form>
 </body>
 </html>
-)rawliteral"; 
+)rawliteral";

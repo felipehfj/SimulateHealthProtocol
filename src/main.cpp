@@ -8,8 +8,10 @@ AsyncWebServer server(80);
 
 void printMessagePrc(const char *msg);
 void printMessageHl7(const char *msg);
+void printMessageOther(const char *msg);
 void printAllHl7();
 void printAllPrc();
+void printAllOther();
 
 char charBuf[768];
 
@@ -72,10 +74,18 @@ void setup()
       else if (messageBlock.equals("HALL"))
       {
         printAllHl7();
-      }
-      else
+      }     
+      else if (messageBlock.equals("O01"))
       {
-        request->send_P(200, "text/html", html);
+        printMessageOther(MSG11);
+      }
+      else if (messageBlock.equals("O02"))
+      {
+        printMessageOther(MSG12);
+      }
+      else if (messageBlock.equals("OALL"))
+      {
+        printAllOther();
       }
     }
     request->send_P(200, "text/html", html);    
@@ -91,6 +101,14 @@ void loop()
 }
 
 void printMessagePrc(const char *msg)
+{
+
+  Serial.write(msg);
+  Serial.write(CARRIAGE_RETURN);
+  Serial.write(LINE_FEED);
+}
+
+void printMessageOther(const char *msg)
 {
 
   Serial.write(msg);
@@ -123,5 +141,14 @@ void printAllPrc()
   {
     strcpy_P(charBuf, PRC[i]);
     printMessagePrc(charBuf);
+  }
+}
+
+void printAllOther()
+{
+  for (int i = 0; i < sizeof(OTHER) / sizeof(OTHER[0]); i++)
+  {
+    strcpy_P(charBuf, OTHER[i]);
+    printMessageOther(charBuf);
   }
 }
