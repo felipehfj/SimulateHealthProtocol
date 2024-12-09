@@ -69,6 +69,10 @@ void setup()
       }
 
       // HL7
+      else if (messageBlock.equals("HVG1"))
+      {
+        printMessageHl7(MSGVG1);
+      }
       else if (messageBlock.equals("H01"))
       {
         printMessageHl7(MSG09);
@@ -76,6 +80,10 @@ void setup()
       else if (messageBlock.equals("H02"))
       {
         printMessageHl7(MSG10);
+      }
+      else if (messageBlock.equals("H03"))
+      {
+        printMessageHl7(MMMXX);
       }
       else if (messageBlock.equals("HALL"))
       {
